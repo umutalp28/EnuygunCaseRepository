@@ -1,0 +1,15 @@
+apiVersion: keda.sh/v1alpha1
+kind: ScaledObject
+metadata:
+  name: gke-demo-scaler
+  namespace: default
+spec:
+  scaleTargetRef:
+    name: gke-demo
+  minReplicaCount: 1
+  maxReplicaCount: 3
+  triggers:
+  - type: cpu
+    metadata:
+      type: Utilization
+      value: "25"
